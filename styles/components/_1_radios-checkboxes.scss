@@ -1,0 +1,213 @@
+/* -------------------------------- 
+
+File#: _1_radios-checkboxes
+Title: Radios and Checkboxes
+Descr: Custom radio and checkbox buttons
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // radios and checkboxes
+  --checkbox-radio-size: 18px;
+  --checkbox-radio-gap: var(--space-xxxs); // gap between button and label
+  --checkbox-radio-border-width: 2px;
+  --checkbox-radio-line-height: var(--body-line-height);
+
+  // radio buttons
+  --radio-marker-size: 8px;
+
+  // checkboxes
+  --checkbox-marker-size: 12px;
+  --checkbox-radius: 4px;
+}
+
+// hide native buttons
+.radio,
+.checkbox {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  margin-top: calc((1em * var(--checkbox-radio-line-height) - var(--checkbox-radio-size)) / 2);
+  opacity: 0;
+  height: var(--checkbox-radio-size);
+  width: var(--checkbox-radio-size);
+  pointer-events: none;
+}
+
+// label
+.radio + label,
+.checkbox + label { 
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: var(--checkbox-radio-line-height);
+  user-select: none;
+  cursor: pointer;
+}
+
+// custom buttons - basic style
+.radio + label::before,
+.checkbox + label::before { 
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: calc((1em * var(--checkbox-radio-line-height) - var(--checkbox-radio-size)) / 2);
+  flex-shrink: 0;
+  width: var(--checkbox-radio-size);
+  height: var(--checkbox-radio-size);
+  background-color: var(--color-bg);
+  border-width: var(--checkbox-radio-border-width);
+  border-color: var(--color-contrast-low);
+  border-style: solid;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: var(--checkbox-radio-gap);
+  transition: transform .2s, border .2s;
+}
+
+// :hover
+.radio:not(:checked):not(:focus) + label:hover::before,
+.checkbox:not(:checked):not(:focus) + label:hover::before {
+  border-color: lightness(var(--color-contrast-low), 0.7);
+}
+
+// radio only style
+.radio + label::before {
+  border-radius: 50%; 
+}
+
+// checkbox only style
+.checkbox + label::before {
+  border-radius: var(--checkbox-radius);
+}
+
+// :checked
+.radio:checked + label::before,
+.checkbox:checked + label::before {
+  background-color: var(--color-primary);
+  box-shadow: none;
+  border-color: var(--color-primary);
+  transition: transform .2s;
+}
+
+// :active
+.radio:active + label::before,
+.checkbox:active + label::before {
+  transform: scale(0.8);
+  transition: transform .2s;
+}
+
+// :checked:active
+.radio:checked:active + label::before,
+.checkbox:checked:active + label::before {
+  transform: none;
+  transition: none;
+}
+
+// radio button icon
+.radio:checked + label::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg class='nc-icon-wrapper' fill='%23ffffff'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23ffffff'%3E%3C/circle%3E%3C/g%3E%3C/svg%3E");
+  background-size: var(--radio-marker-size);
+}
+
+// checkbox button icon
+.checkbox:checked + label::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpolyline points='1 6.5 4 9.5 11 2.5' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: var(--checkbox-marker-size);
+}
+
+// :focus
+.radio:checked:active + label::before,
+.checkbox:checked:active + label::before,
+.radio:focus + label::before,
+.checkbox:focus + label::before {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px alpha(var(--color-primary), 0.2);
+}
+
+// --radio--bg, --checkbox--bg -> variation with background color
+.radio--bg + label, .checkbox--bg + label {
+  padding: var(--space-xxxxs) var(--space-xxxs);
+  border-radius: var(--radius-md);
+  transition: background .2s;
+}
+
+.radio--bg + label:hover, .checkbox--bg + label:hover {
+  background-color: var(--color-contrast-lower);
+}
+
+.radio--bg:active + label,
+.checkbox--bg:active + label,
+.radio--bg:focus + label,
+.checkbox--bg:focus + label {
+  background-color: alpha(var(--color-primary), 0.1);
+}
+
+// Choice tag
+.choice-tag.choice-tag__selected {
+  background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.08);
+}
+
+.choice-tag:active, .choice-tag:focus-within, .choice-tag.choice-tag__selected {
+  border-color: var(--color-primary);
+}
+
+.choice-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 50em;
+  border: 1px solid var(--color-contrast-low);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: .2s;
+  
+  .choice-tag__icon-content * {
+    -webkit-transform-origin: 8px 8px;
+    transform-origin: 8px 8px;
+  }
+
+  .choice-tag__icon-content * {
+    stroke-dasharray: 16;
+  }
+
+  .choice-tag__icon-content :nth-child(1), .choice-tag__icon-content :nth-child(2) {
+    transition: stroke-dashoffset 0.3s var(--ease-out-back),-webkit-transform 0.3s var(--ease-out-back);
+    transition: transform 0.3s var(--ease-out-back),stroke-dashoffset 0.3s var(--ease-out-back);
+    transition: transform 0.3s var(--ease-out-back),stroke-dashoffset 0.3s var(--ease-out-back),-webkit-transform 0.3s var(--ease-out-back);
+  }
+
+  .choice-tag__icon-content :nth-child(1) {
+    stroke-dashoffset: 24;
+  }
+
+  .choice-tag__icon-content :nth-child(2) {
+    stroke-dashoffset: 10;
+  }
+
+  .choice-tag__icon-content :nth-child(3) {
+    transition: stroke-dashoffset .3s;
+    stroke-dashoffset: 0;
+  }
+
+  input:checked+.choice-tag__icon .choice-tag__icon-content :nth-child(1) {
+    stroke-dashoffset: 23;
+    -webkit-transform: translateX(-2px) translateY(4px) rotate(45deg);
+    transform: translateX(-2px) translateY(4px) rotate(45deg);
+  }
+
+  input:checked+.choice-tag__icon .choice-tag__icon-content :nth-child(2) {
+    stroke-dashoffset: 5;
+    -webkit-transform: translateX(-2px) translateY(4px) rotate(-45deg);
+    transform: translateX(-2px) translateY(4px) rotate(-45deg);
+  }
+
+  input:checked+.choice-tag__icon .choice-tag__icon-content :nth-child(3) {
+    transition: none;
+    stroke-dashoffset: 16;
+    opacity: 0;
+  }
+}

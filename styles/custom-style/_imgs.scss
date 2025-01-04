@@ -1,0 +1,56 @@
+:root {
+  --img-xxs: 32px;
+  --img-xs: 48px;
+  --img-sm: 64px;
+  --img-md: 96px;
+  --img-lg: 128px;
+  --img-xl: 192px;
+  --img-xxl: 256px;
+  --img-xxxl: 384px;
+}
+
+.img {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img--xxs {
+  width: var(--img-xxs);
+  height: var(--img-xxs);
+}
+
+.img--xs {
+  width: var(--img-xs);
+  height: var(--img-xs);
+}
+
+.img--sm {
+  width: var(--img-sm);
+  height: var(--img-sm);
+}
+
+.img--md {
+  width: var(--img-md);
+  height: var(--img-md);
+}
+
+.img--lg {
+  width: var(--img-lg);
+  height: var(--img-lg);
+}
+
+.img--xl {
+  width: var(--img-xl);
+  height: var(--img-xl);
+}
+
+.img--xxl {
+  width: var(--img-xxl);
+  height: var(--img-xxl);
+}
+
+.img--xxxl {
+  width: var(--img-xxxl);
+  height: var(--img-xxxl);
+}
