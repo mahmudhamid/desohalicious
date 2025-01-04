@@ -1,4 +1,4 @@
-## Candle
+## Restaurant ordering portal
 
 A restaurant ordering portal - frontend. This is a part of a larger project. It uses Reactjs, Nextjs, and Graphql to connect to a serverless backend (micro-services).
 
